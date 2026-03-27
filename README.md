@@ -501,9 +501,8 @@ sudo chmod +x /usr/local/bin/proxy-status.sh
 ## Step 17: When You Arrive at the Office
 
 ### On Windows — Enable Proxy:
-```
+
 Settings → Network & Internet → Proxy → Turn on
-```
 
 ### On Kali:
 
@@ -524,9 +523,8 @@ sudo proxy-status.sh
 ## Step 18: When You Get Home
 
 ### On Windows — Disable Proxy:
-```
+
 Settings → Network & Internet → Proxy → Turn off
-```
 
 ### On Kali:
 
