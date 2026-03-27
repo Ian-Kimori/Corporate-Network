@@ -516,14 +516,6 @@ source /etc/environment
 ```
 
 ```bash
-kinit youruser@CORP.COM
-```
-
-```bash
-klist
-```
-
-```bash
 sudo proxy-status.sh
 ```
 
