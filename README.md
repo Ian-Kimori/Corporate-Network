@@ -64,21 +64,7 @@ echo %USERDOMAIN%
 
 ---
 
-## Step 6: Confirm Proxy Auth Type
-
-```cmd
-curl -v -x http://proxy2.corp.com:8080 http://example.com
-```
-
-Look for:
-```
-HTTP/1.1 407 Proxy Authentication Required
-Proxy-Authenticate: Negotiate
-```
-
----
-
-## Step 7: Export Corporate Root CA Certificate
+## Step 6: Export Corporate Root CA Certificate
 
 ```
 Win+R → certmgr.msc
@@ -115,11 +101,11 @@ Filename: umbrella-ca.crt → Save to Desktop
 ## Step 9: Check if Cisco Umbrella Roaming Client is Installed
 
 ```cmd
-sc query CiscoUmbrella
+tasklist | findstr -i umbrella
 ```
 
 ```cmd
-tasklist | findstr -i umbrella
+tasklist | findstr -i cisco
 ```
 
 Note whether it is running — this affects home network too.
@@ -144,10 +130,6 @@ Note whether it is running — this affects home network too.
 ---
 ---
 
-# PART 2: VIRTUALBOX CONFIGURATION (DO ONCE)
-
----
-
 ## Step 11: Set Network Adapter to NAT
 
 ```
@@ -165,29 +147,7 @@ Click OK
 
 ---
 
-## Step 12: Configure Shared Folder
-
-```
-VirtualBox → Settings → Shared Folders → Click +
-```
-```
-Folder Path: C:\Users\YourUser\Desktop
-Folder Name: shared
-Check: Auto-mount
-Check: Make Permanent
-```
-```
-Click OK → OK
-```
-
----
----
-
-# PART 3: KALI BASE SETUP (DO ONCE)
-
----
-
-## Step 13: Boot Kali and Verify Network
+## Step 12: Boot Kali and Verify Network
 
 ```bash
 ip a
@@ -199,55 +159,10 @@ ping -c 3 10.0.2.2
 
 ---
 
-## Step 14: Install Required Packages
-
-```bash
-sudo apt update
-```
-
-```bash
-sudo apt install -y krb5-user curl wget git libnss3-tools ntpdate network-manager
-```
-
-When prompted for Kerberos realm:
-```
-Default realm: CORP.COM
-KDC server:    dc1.corp.com
-Admin server:  dc1.corp.com
-```
-
----
-
-## Step 15: Mount Shared Folder
-
-```bash
-sudo mkdir -p /mnt/shared
-```
-
-```bash
-sudo mount -t vboxsf shared /mnt/shared
-```
-
-Make it persistent across reboots:
-
-```bash
-sudo nano /etc/fstab
-```
-
-Add at bottom:
-
-```
-shared  /mnt/shared  vboxsf  defaults,uid=1000,gid=1000  0  0
-```
-
-Save: `Ctrl+O` → `Enter` → `Ctrl+X`
-
----
-
 ## Step 16: Install Corporate Root CA System-Wide
 
 ```bash
-sudo cp /mnt/shared/corp-ca.crt /usr/local/share/ca-certificates/
+sudo cp /home/kali/Desktop/corp-ca.crt /usr/local/share/ca-certificates/
 ```
 
 ```bash
@@ -259,7 +174,7 @@ sudo update-ca-certificates
 ## Step 17: Install Cisco Umbrella CA System-Wide (if applicable)
 
 ```bash
-sudo cp /mnt/shared/umbrella-ca.crt /usr/local/share/ca-certificates/
+sudo cp /home/kali/Desktop/umbrella-ca.crt /usr/local/share/ca-certificates/
 ```
 
 ```bash
@@ -274,7 +189,7 @@ sudo update-ca-certificates
 certutil -A \
   -n "Corporate CA" \
   -t "CT,," \
-  -i /mnt/shared/corp-ca.crt \
+  -i /home/kali/Desktop/corp-ca.crt \
   -d ~/.mozilla/firefox/39nfjb0i.default-esr
 ```
 
@@ -282,7 +197,15 @@ certutil -A \
 certutil -A \
   -n "Cisco Umbrella CA" \
   -t "CT,," \
-  -i /mnt/shared/umbrella-ca.crt \
+  -i /home/kali/Desktop/umbrella-ca.crt \
+  -d ~/.mozilla/firefox/39nfjb0i.default-esr
+```
+
+```bash
+sudo certutil -A \
+  -n "PortSwigger" \      
+  -t "CT,," \
+  -i /home/kali/Desktop/burp-ca.crt \
   -d ~/.mozilla/firefox/39nfjb0i.default-esr
 ```
 
@@ -305,40 +228,6 @@ security.enterprise_roots.enabled
 Double-click → set to `true`
 
 Restart Firefox.
-
----
-
-## Step 20: Configure Kerberos
-
-```bash
-sudo nano /etc/krb5.conf
-```
-
-Replace entire contents:
-
-```ini
-[libdefaults]
-    default_realm = CORP.COM
-    dns_lookup_realm = false
-    dns_lookup_kdc = true
-    ticket_lifetime = 24h
-    renew_lifetime = 7d
-    forwardable = true
-    rdns = false
-
-[realms]
-    CORP.COM = {
-        kdc = dc1.corp.com
-        admin_server = dc1.corp.com
-        default_domain = corp.com
-    }
-
-[domain_realm]
-    .corp.com = CORP.COM
-    corp.com = CORP.COM
-```
-
-Save: `Ctrl+O` → `Enter` → `Ctrl+X`
 
 ---
 
