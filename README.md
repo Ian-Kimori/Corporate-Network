@@ -209,29 +209,7 @@ Restart Firefox.
 
 ---
 
-## Step 16: Create pip Config (Permanent)
-
-```bash
-mkdir -p ~/.config/pip
-```
-
-```bash
-nano ~/.config/pip/pip.conf
-```
-
-```
-[global]
-cert = /etc/ssl/certs/ca-certificates.crt
-trusted-host = pypi.org
-               pypi.python.org
-               files.pythonhosted.org
-```
-
-Save: `Ctrl+O` → `Enter` → `Ctrl+X`
-
----
-
-## Step 17: Create the Switch Scripts
+## Step 16: Create the Switch Scripts
 
 ### Corporate Profile Script
 
@@ -517,13 +495,10 @@ sudo chmod +x /usr/local/bin/proxy-status.sh
 ```
 
 ---
----
-
-# PART 4: DAILY USAGE
 
 ---
 
-## When You Arrive at the Office
+## Step 17: When You Arrive at the Office
 
 ### On Windows — Enable Proxy:
 ```
@@ -554,7 +529,7 @@ sudo proxy-status.sh
 
 ---
 
-## When You Get Home
+## Step 18: When You Get Home
 
 ### On Windows — Disable Proxy:
 ```
@@ -577,48 +552,13 @@ sudo proxy-status.sh
 
 ---
 
-## Check Current Profile Anytime
+## Step 19: Check Current Profile Anytime
 
 ```bash
 sudo proxy-status.sh
 ```
 
 ---
-
-## Manually Renew Kerberos Ticket (Corporate Only)
-
-```bash
-kinit -R
-```
-
-```bash
-klist
-```
-
----
----
-
-# MASTER CHECKLIST
-
-## One-Time Setup
-
-| # | Task | Done |
-|---|---|---|
-| 1 | Proxy details collected from Windows | ☐ |
-| 2 | Domain + DC info collected | ☐ |
-| 3 | Corp CA cert exported | ☐ |
-| 4 | Cisco Umbrella CA cert exported | ☐ |
-| 5 | VirtualBox set to NAT | ☐ |
-| 6 | Shared folder configured | ☐ |
-| 7 | Packages installed (krb5, libnss3-tools) | ☐ |
-| 8 | Corp CA installed system-wide | ☐ |
-| 9 | Umbrella CA installed system-wide | ☐ |
-| 10 | Both CAs imported into Firefox | ☐ |
-| 11 | Firefox enterprise roots enabled | ☐ |
-| 12 | /etc/krb5.conf configured | ☐ |
-| 13 | proxy-corp.sh created and executable | ☐ |
-| 14 | proxy-home.sh created and executable | ☐ |
-| 15 | proxy-status.sh created and executable | ☐ |
 
 ## Every Time You Switch Networks
 
