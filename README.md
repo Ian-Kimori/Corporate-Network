@@ -125,16 +125,7 @@ Advanced → Promiscuous Mode: Allow All
 
 Click OK
 
-## Step 11: Boot Kali and Verify Network
-
-```bash
-ip a
-```
-
-```bash
-ping -c 3 10.0.2.2
-```
-## Step 12: Configure DNS
+## Step 11: Configure DNS
 
 ```bash
 sudo nano /etc/resolv.conf
@@ -175,7 +166,7 @@ nslookup google.com
 ```
 ---
 
-## Step 13: System-Wide Proxy
+## Step 12: System-Wide Proxy
 
 ```bash
 sudo nano /etc/environment
@@ -199,7 +190,7 @@ printenv | grep -i proxy
 ```
 ---
 
-## Step 14: Install Corporate Root CA System-Wide
+## Step 13: Install Corporate Root CA System-Wide
 
 ```bash
 sudo cp /home/kali/Desktop/corp-ca.crt /usr/local/share/ca-certificates/
@@ -211,7 +202,7 @@ sudo update-ca-certificates
 
 ---
 
-## Step 15: Install Cisco Umbrella CA System-Wide (if applicable)
+## Step 14: Install Cisco Umbrella CA System-Wide (if applicable)
 
 ```bash
 sudo cp /home/kali/Desktop/umbrella-ca.crt /usr/local/share/ca-certificates/
@@ -223,7 +214,7 @@ sudo update-ca-certificates
 
 ---
 
-## Step 16: Install Both CA Certs into Firefox
+## Step 15: Install Both CA Certs into Firefox
 
 ```bash
 certutil -A \
@@ -251,7 +242,7 @@ sudo certutil -A \
 
 ---
 
-## Step 17: Enable Firefox to Trust System Certificate Store
+## Step 16: Enable Firefox to Trust System Certificate Store
 
 Open Firefox → address bar:
 
@@ -270,6 +261,16 @@ Double-click → set to `true`
 Restart Firefox.
 
 ---
+
+## Step 17: Boot Kali and Verify Network
+
+```bash
+ip a
+```
+
+```bash
+ping -c 3 10.0.2.2
+```
 
 ## Step 18: Create the Switch Scripts
 
