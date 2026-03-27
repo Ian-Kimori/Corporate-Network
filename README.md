@@ -65,15 +65,13 @@ echo %USERDOMAIN%
 ## Step 6: Export Corporate Root CA Certificate
 
 Win+R → certmgr.msc
-```
-```
+
 Trusted Root Certification Authorities → Certificates
-```
-```
+
 Find corporate root CA → Right-click → All Tasks → Export
-```
-```
+
 Format: Base-64 encoded X.509 (.CER)
+
 Filename: corp-ca.crt → Save to Desktop
 
 ## Step 8: Export Cisco Umbrella CA Certificate (if present)
