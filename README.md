@@ -173,10 +173,33 @@ Test:
 ```bash
 nslookup google.com
 ```
-
 ---
 
-## Step 12: Install Corporate Root CA System-Wide
+## Step 13: System-Wide Proxy
+
+```bash
+sudo nano /etc/environment
+```
+
+```
+http_proxy="http://proxy2:8080"
+https_proxy="http://proxy2:8080"
+HTTP_PROXY="http://proxy2:8080"
+HTTPS_PROXY="http://proxy2:8080"
+no_proxy="localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/16"
+NO_PROXY="localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/16"
+```
+
+```bash
+source /etc/environment
+```
+
+```bash
+printenv | grep -i proxy
+```
+---
+
+## Step 14: Install Corporate Root CA System-Wide
 
 ```bash
 sudo cp /home/kali/Desktop/corp-ca.crt /usr/local/share/ca-certificates/
@@ -188,7 +211,7 @@ sudo update-ca-certificates
 
 ---
 
-## Step 13: Install Cisco Umbrella CA System-Wide (if applicable)
+## Step 15: Install Cisco Umbrella CA System-Wide (if applicable)
 
 ```bash
 sudo cp /home/kali/Desktop/umbrella-ca.crt /usr/local/share/ca-certificates/
@@ -200,7 +223,7 @@ sudo update-ca-certificates
 
 ---
 
-## Step 14: Install Both CA Certs into Firefox
+## Step 16: Install Both CA Certs into Firefox
 
 ```bash
 certutil -A \
@@ -228,7 +251,7 @@ sudo certutil -A \
 
 ---
 
-## Step 15: Enable Firefox to Trust System Certificate Store
+## Step 17: Enable Firefox to Trust System Certificate Store
 
 Open Firefox → address bar:
 
@@ -248,7 +271,7 @@ Restart Firefox.
 
 ---
 
-## Step 16: Create the Switch Scripts
+## Step 18: Create the Switch Scripts
 
 ### Corporate Profile Script
 
@@ -537,7 +560,7 @@ sudo chmod +x /usr/local/bin/proxy-status.sh
 
 ---
 
-## Step 17: When You Arrive at the Office
+## Step 19: When You Arrive at the Office
 
 ### On Windows — Enable Proxy:
 
@@ -559,7 +582,7 @@ sudo proxy-status.sh
 
 ---
 
-## Step 18: When You Get Home
+## Step 20: When You Get Home
 
 ### On Windows — Disable Proxy:
 
@@ -581,7 +604,7 @@ sudo proxy-status.sh
 
 ---
 
-## Step 19: Check Current Profile Anytime
+## Step 21: Check Current Profile Anytime
 
 ```bash
 sudo proxy-status.sh
