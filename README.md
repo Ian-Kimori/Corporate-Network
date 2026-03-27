@@ -559,8 +559,7 @@ sudo proxy-status.sh
 | 1 | Enable proxy on Windows | Disable proxy on Windows |
 | 2 | `sudo proxy-corp.sh` | `sudo proxy-home.sh` |
 | 3 | `source /etc/environment` | `source /etc/environment` |
-| 4 | `kinit user@CORP.COM` | Not needed |
-| 5 | `sudo proxy-status.sh` | `sudo proxy-status.sh` |
+| 4 | `sudo proxy-status.sh` | `sudo proxy-status.sh` |
 
 ---
 
