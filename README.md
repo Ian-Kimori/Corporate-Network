@@ -1,8 +1,5 @@
 # Certificates-in-Corporate-Networks-when-using-VM-in-AD-windows-Host
 
-# Complete Network Profile Guide: Corporate & Home
-### Kali Linux VirtualBox — Full Switch Procedure
-
 ---
 
 # PART 1: INFORMATION GATHERING ON WINDOWS (DO ONCE)
