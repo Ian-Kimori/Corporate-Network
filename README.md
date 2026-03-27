@@ -39,10 +39,9 @@ ipconfig /all
 ```
 
 Note down:
-```
+
 DNS Servers     : 10.10.1.1
 Default Gateway : 10.10.0.1
-```
 
 ---
 
