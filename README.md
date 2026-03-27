@@ -560,7 +560,3 @@ sudo proxy-status.sh
 | 2 | `sudo proxy-corp.sh` | `sudo proxy-home.sh` |
 | 3 | `source /etc/environment` | `source /etc/environment` |
 | 4 | `sudo proxy-status.sh` | `sudo proxy-status.sh` |
-
----
-
-> **Four values drive everything** — replace `proxy2.corp.com`, `8080`, `CORP.COM`, `dc1.corp.com` and `10.10.1.1` with your actual values from the master reference table in Step 10. Everything else stays the same.
