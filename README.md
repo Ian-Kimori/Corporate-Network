@@ -107,9 +107,6 @@ Note whether it is running — this affects home network too.
 | Proxy hostname | `proxy2.corp.com` |
 | Proxy IP | `10.10.1.5` |
 | Proxy port | `8080` |
-| Auth type | `Kerberos/Negotiate` |
-| Domain name | `CORP.COM` |
-| Domain controller | `dc1.corp.com` |
 | DNS server | `10.10.1.1` |
 | Corp CA cert | `corp-ca.crt` |
 | Umbrella CA cert | `umbrella-ca.crt` |
