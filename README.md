@@ -117,20 +117,13 @@ Note whether it is running — this affects home network too.
 
 ## Step 11: Set Network Adapter to NAT
 
-```
 VirtualBox → Select Kali VM → Settings
-```
-```
-Network → Adapter 1 → Attached to: NAT
-```
-```
-Advanced → Promiscuous Mode: Allow All
-```
-```
-Click OK
-```
 
----
+Network → Adapter 1 → Attached to: NAT
+
+Advanced → Promiscuous Mode: Allow All
+
+Click OK
 
 ## Step 12: Boot Kali and Verify Network
 
