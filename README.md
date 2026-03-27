@@ -9,10 +9,8 @@ reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
 ```
 
 Note down:
-```
 ProxyServer   → proxy2.corp.com:8080
 AutoConfigURL → http://wpad.corp.com/proxy.pac
-```
 
 ---
 
