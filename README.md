@@ -2,10 +2,6 @@
 
 ---
 
-# PART 1: INFORMATION GATHERING ON WINDOWS (DO ONCE)
-
----
-
 ## Step 1: Get All Proxy Settings
 
 ```cmd
