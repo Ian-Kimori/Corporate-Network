@@ -74,7 +74,7 @@ Format: Base-64 encoded X.509 (.CER)
 
 Filename: corp-ca.crt → Save to Desktop
 
-## Step 8: Export Cisco Umbrella CA Certificate (if present)
+## Step 7: Export Cisco Umbrella CA Certificate (if present)
 
 Same certmgr.msc window
 
@@ -86,7 +86,7 @@ Format: Base-64 encoded X.509 (.CER)
 
 Filename: umbrella-ca.crt → Save to Desktop
 
-## Step 9: Check if Cisco Umbrella Roaming Client is Installed
+## Step 8: Check if Cisco Umbrella Roaming Client is Installed
 
 ```cmd
 tasklist | findstr -i umbrella
@@ -100,7 +100,7 @@ Note whether it is running — this affects home network too.
 
 ---
 
-## Step 10: Master Reference Table
+## Step 9: Master Reference Table
 
 | Setting | Your Value |
 |---|---|
@@ -115,7 +115,7 @@ Note whether it is running — this affects home network too.
 ---
 ---
 
-## Step 11: Set Network Adapter to NAT
+## Step 10: Set Network Adapter to NAT
 
 VirtualBox → Select Kali VM → Settings
 
@@ -125,7 +125,7 @@ Advanced → Promiscuous Mode: Allow All
 
 Click OK
 
-## Step 12: Boot Kali and Verify Network
+## Step 11: Boot Kali and Verify Network
 
 ```bash
 ip a
@@ -137,7 +137,7 @@ ping -c 3 10.0.2.2
 
 ---
 
-## Step 16: Install Corporate Root CA System-Wide
+## Step 12: Install Corporate Root CA System-Wide
 
 ```bash
 sudo cp /home/kali/Desktop/corp-ca.crt /usr/local/share/ca-certificates/
@@ -149,7 +149,7 @@ sudo update-ca-certificates
 
 ---
 
-## Step 17: Install Cisco Umbrella CA System-Wide (if applicable)
+## Step 13: Install Cisco Umbrella CA System-Wide (if applicable)
 
 ```bash
 sudo cp /home/kali/Desktop/umbrella-ca.crt /usr/local/share/ca-certificates/
@@ -161,7 +161,7 @@ sudo update-ca-certificates
 
 ---
 
-## Step 18: Install Both CA Certs into Firefox
+## Step 14: Install Both CA Certs into Firefox
 
 ```bash
 certutil -A \
@@ -189,7 +189,7 @@ sudo certutil -A \
 
 ---
 
-## Step 19: Enable Firefox to Trust System Certificate Store
+## Step 15: Enable Firefox to Trust System Certificate Store
 
 Open Firefox → address bar:
 
@@ -209,7 +209,7 @@ Restart Firefox.
 
 ---
 
-## Step 21: Create pip Config (Permanent)
+## Step 16: Create pip Config (Permanent)
 
 ```bash
 mkdir -p ~/.config/pip
@@ -231,7 +231,7 @@ Save: `Ctrl+O` → `Enter` → `Ctrl+X`
 
 ---
 
-## Step 22: Create the Switch Scripts
+## Step 17: Create the Switch Scripts
 
 ### Corporate Profile Script
 
