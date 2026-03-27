@@ -76,19 +76,15 @@ Filename: corp-ca.crt → Save to Desktop
 
 ## Step 8: Export Cisco Umbrella CA Certificate (if present)
 
-```
 Same certmgr.msc window
-```
-```
-Find: Cisco Umbrella Primary SubCA
-Right-click → All Tasks → Export
-```
-```
-Format: Base-64 encoded X.509 (.CER)
-Filename: umbrella-ca.crt → Save to Desktop
-```
 
----
+Find: Cisco Umbrella Primary SubCA
+
+Right-click → All Tasks → Export
+
+Format: Base-64 encoded X.509 (.CER)
+
+Filename: umbrella-ca.crt → Save to Desktop
 
 ## Step 9: Check if Cisco Umbrella Roaming Client is Installed
 
