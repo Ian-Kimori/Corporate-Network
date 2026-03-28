@@ -138,7 +138,7 @@ nameserver 10.10.1.1
 nameserver 10.10.1.2
 
 # NOTE: the libc resolver may not support more than 3 nameservers.
- The nameservers listed below may not be recognized.
+The nameservers listed below may not be recognized.
 nameserver fd17:625c:f037:2::3
 
 ```
@@ -171,10 +171,10 @@ sudo nano /etc/environment
 ```
 
 ```
-http_proxy="http://proxy2:8080"
-https_proxy="http://proxy2:8080"
-HTTP_PROXY="http://proxy2:8080"
-HTTPS_PROXY="http://proxy2:8080"
+http_proxy="http://proxy2.corp.com:8080"
+https_proxy="http://proxy2.corp.com:8080"
+HTTP_PROXY="http://proxy2.corp.com:8080"
+HTTPS_PROXY="http://proxy2.corp.com:8080"
 no_proxy="localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/16"
 NO_PROXY="localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/16"
 ```
