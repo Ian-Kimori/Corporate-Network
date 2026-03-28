@@ -417,6 +417,13 @@ echo "  3. Test: curl -I https://google.com"
 echo "================================================"
 echo ""
 
+echo ""
+echo "  IMPORTANT: Run this in your terminal to clear"
+echo "  proxy from current session:"
+echo ""
+echo "  unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY no_proxy NO_PROXY"
+echo ""
+
 ```
 
 ```bash
@@ -523,7 +530,7 @@ sudo proxy-corp.sh
 ```
 
 ```bash
-source /etc/environment
+source /usr/local/bin/proxy-corp.sh
 ```
 
 ```bash
@@ -545,7 +552,7 @@ sudo proxy-home.sh
 ```
 
 ```bash
-source /etc/environment
+source /usr/local/bin/proxy-home.sh
 ```
 
 ```bash
