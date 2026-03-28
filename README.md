@@ -435,39 +435,68 @@ sudo nano /usr/local/bin/proxy-status.sh
 #!/bin/bash
 echo ""
 echo "================================================"
-echo "          CURRENT NETWORK PROFILE STATUS"
+echo "          NETWORK PROFILE STATUS"
 echo "================================================"
 
+# Profile detection
 echo ""
 echo "[1] ACTIVE PROFILE"
-PROXY=$(cat /etc/environment 2>/dev/null | grep http_proxy)
+PROXY=$(grep -s http_proxy /etc/environment)
 if [ -z "$PROXY" ]; then
     echo "      HOME profile active"
 else
     echo "      CORPORATE profile active"
-    echo "      $PROXY"
 fi
 
+# DNS
 echo ""
 echo "[2] DNS SERVERS"
-cat /etc/resolv.conf | grep nameserver
+grep nameserver /etc/resolv.conf
 
+# resolv.conf lock status
 echo ""
-echo "[3] PROXY ENVIRONMENT"
+echo "[3] RESOLV.CONF LOCK"
+LOCK=$(lsattr /etc/resolv.conf 2>/dev/null | grep -o '\-\-\-\-i')
+if [ "$LOCK" = "----i" ]; then
+    echo "      Locked (corporate DNS protected)"
+else
+    echo "      Unlocked (managed by NetworkManager)"
+fi
+
+# /etc/environment contents
+echo ""
+echo "[4] /etc/environment"
+if [ -s /etc/environment ]; then
+    cat /etc/environment
+else
+    echo "      Empty — no system proxy set"
+fi
+
+# Session proxy vars
+echo ""
+echo "[5] SESSION PROXY VARS"
 ENV_PROXY=$(printenv | grep -i proxy)
 if [ -z "$ENV_PROXY" ]; then
-    echo "      No proxy in environment"
+    echo "      None — clean session"
 else
     echo "$ENV_PROXY"
 fi
 
+# Network interface
 echo ""
-echo "[7] NETWORK INTERFACE"
-ip a | grep -E "inet |state " | grep -v "127.0.0.1"
+echo "[6] NETWORK INTERFACE"
+ip a | grep "inet " | grep -v "127.0.0.1"
 
+# Gateway
+echo ""
+echo "[7] DEFAULT GATEWAY"
+ip route | grep default
+
+# Internet test
 echo ""
 echo "[8] INTERNET TEST"
-curl -s -o /dev/null -w "      HTTP Status: %{http_code}\n" https://google.com
+curl -s -o /dev/null -w "      HTTPS: HTTP %{http_code}\n" --max-time 5 https://google.com
+curl -s -o /dev/null -w "      HTTP:  HTTP %{http_code}\n" --max-time 5 http://google.com
 
 echo ""
 echo "================================================"
