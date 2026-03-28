@@ -269,8 +269,28 @@ ip a
 ```bash
 ping -c 3 10.0.2.2
 ```
+## Step 18: Configure sudo to Keep Proxy Vars (One Time)
 
-## Step 18: Create the Switch Scripts
+```bash
+sudo visudo
+```
+
+Find:
+
+```
+Defaults env_reset
+```
+
+Add directly below:
+
+```
+Defaults env_keep += "http_proxy https_proxy ftp_proxy HTTP_PROXY HTTPS_PROXY FTP_PROXY no_proxy NO_PROXY"
+```
+
+Save: `Ctrl+O` → `Enter` → `Ctrl+X`
+
+---
+## Step 19: Create the Switch Scripts
 
 ### Corporate Profile Script
 
@@ -461,7 +481,7 @@ sudo chmod +x /usr/local/bin/proxy-status.sh
 
 ---
 
-## Step 19: When You Arrive at the Office
+## Step 20: When You Arrive at the Office
 
 ### On Windows — Enable Proxy:
 
@@ -483,7 +503,7 @@ sudo proxy-status.sh
 
 ---
 
-## Step 20: When You Get Home
+## Step 21: When You Get Home
 
 ### On Windows — Disable Proxy:
 
@@ -505,7 +525,7 @@ sudo proxy-status.sh
 
 ---
 
-## Step 21: Check Current Profile Anytime
+## Step 22: Check Current Profile Anytime
 
 ```bash
 sudo proxy-status.sh
