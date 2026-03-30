@@ -526,11 +526,15 @@ Settings → Network & Internet → Proxy → Turn on
 ### On Kali:
 
 ```bash
-sudo proxy-corp.sh
+sudo proxy-corp.sh # writes files but vars dont apply to terminal
 ```
-
+Then
 ```bash
-source /usr/local/bin/proxy-corp.sh
+source /etc/environment # now vars apply to terminal
+```
+or
+```bash
+source /usr/local/bin/proxy-corp.sh # writes files AND vars apply instantly
 ```
 
 ```bash
@@ -548,11 +552,15 @@ Settings → Network & Internet → Proxy → Turn off
 ### On Kali:
 
 ```bash
-sudo proxy-home.sh
+sudo proxy-home.sh # writes files but vars dont apply to terminal
 ```
-
+Then
 ```bash
-source /usr/local/bin/proxy-home.sh
+source /etc/environment # now vars apply to terminal
+```
+Or
+```bash
+source /usr/local/bin/proxy-home.sh # writes files AND vars apply instantly
 ```
 
 ```bash
