@@ -1,4 +1,4 @@
-# Certificates-in-Corporate-Networks-when-using-VM-in-AD-windows-Host
+# Corporate Networks
 
 ---
 
