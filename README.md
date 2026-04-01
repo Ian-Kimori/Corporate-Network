@@ -257,7 +257,16 @@ security.enterprise_roots.enabled
 Double-click → set to `true`
 
 Quick test
-In Firefox address bar go to about:config and search for network.proxy — check what network.proxy.type is set to:
+
+Open Firefox → address bar:
+```
+about:config
+```
+Search:
+```
+network.proxy
+```
+Check what network.proxy.type is set to:
 
 0 = no proxy
 1 = manual
