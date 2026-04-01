@@ -284,7 +284,11 @@ Restart Firefox.
 ```bash
 # Check what GNOME thinks the proxy is
 gsettings get org.gnome.system.proxy mode
+```
+```bash
 gsettings get org.gnome.system.proxy.http host
+```
+```bash
 gsettings get org.gnome.system.proxy.http port
 ```
 If mode returns 'none' or the host/port are empty/wrong, that's your culprit.
@@ -293,16 +297,24 @@ Fix it
 ```bash
 # Set GNOME proxy to manual pointing at proxy2:8080
 gsettings set org.gnome.system.proxy mode 'manual'
+```
+```bash
 gsettings set org.gnome.system.proxy.http host 'proxy2'
+```
+```bash
 gsettings set org.gnome.system.proxy.http port 8080
+```
+```bash
 gsettings set org.gnome.system.proxy.https host 'proxy2'
+```
+```bash
 gsettings set org.gnome.system.proxy.https port 8080
 ```
 or
 
 Revert GNOME proxy, configure only Burp upstream
 
-**2nd — In Burp, set upstream proxy:**
+**2nd — Reset GNOME proxy back to none (Firefox won't use it anyway):**
 ```bash
 gsettings set org.gnome.system.proxy mode 'none'
 ```
