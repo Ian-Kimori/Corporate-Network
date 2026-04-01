@@ -269,8 +269,11 @@ network.proxy
 Check what network.proxy.type is set to:
 
 0 = no proxy
+
 1 = manual
+
 4 = auto-detect
+
 5 = use system proxy
 
 Restart Firefox.
