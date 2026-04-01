@@ -280,7 +280,7 @@ Restart Firefox.
 
 ---
 ## Step 17: Firefox reads GNOME proxy settings, not env vars
-
+**1st — Check what GNOME thinks the proxy is:**
 ```bash
 # Check what GNOME thinks the proxy is
 gsettings get org.gnome.system.proxy mode
@@ -301,19 +301,20 @@ gsettings set org.gnome.system.proxy.https port 8080
 or
 
 Revert GNOME proxy, configure only Burp upstream
-**1st — In Burp, set upstream proxy:**
+
+**2nd — In Burp, set upstream proxy:**
 ```bash
 gsettings set org.gnome.system.proxy mode 'none'
 ```
 
-**2nd — In Burp, set upstream proxy:**
+**3rd — In Burp, set upstream proxy:**
 
 `Settings → Network → Connections → Upstream Proxy Servers → Add`
 - Destination host: `*`
 - Proxy host: `proxy2`  
 - Proxy port: `8080`
 
-**3rd — Firefox manual proxy:**
+**4th — Firefox manual proxy:**
 - HTTP: `127.0.0.1:8080`
 - HTTPS: `127.0.0.1:8080`
 
