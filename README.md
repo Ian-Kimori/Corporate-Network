@@ -285,6 +285,7 @@ gsettings get org.gnome.system.proxy.http host
 gsettings get org.gnome.system.proxy.http port
 ```
 If mode returns 'none' or the host/port are empty/wrong, that's your culprit.
+
 Fix it
 ```bash
 # Set GNOME proxy to manual pointing at proxy2:8080
@@ -294,8 +295,9 @@ gsettings set org.gnome.system.proxy.http port 8080
 gsettings set org.gnome.system.proxy.https host 'proxy2'
 gsettings set org.gnome.system.proxy.https port 8080
 ```
-or 
-revert GNOME proxy, configure only Burp upstream
+or
+
+Revert GNOME proxy, configure only Burp upstream
 **1st — In Burp, set upstream proxy:**
 ```bash
 gsettings set org.gnome.system.proxy mode 'none'
