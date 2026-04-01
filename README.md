@@ -259,8 +259,67 @@ Double-click → set to `true`
 Restart Firefox.
 
 ---
+## Step 17: Firefox reads GNOME proxy settings, not env vars
 
-## Step 17: Verify Network
+```bash
+# Check what GNOME thinks the proxy is
+gsettings get org.gnome.system.proxy mode
+gsettings get org.gnome.system.proxy.http host
+gsettings get org.gnome.system.proxy.http port
+```
+If mode returns 'none' or the host/port are empty/wrong, that's your culprit.
+Fix it
+```bash
+# Set GNOME proxy to manual pointing at proxy2:8080
+gsettings set org.gnome.system.proxy mode 'manual'
+gsettings set org.gnome.system.proxy.http host 'proxy2'
+gsettings set org.gnome.system.proxy.http port 8080
+gsettings set org.gnome.system.proxy.https host 'proxy2'
+gsettings set org.gnome.system.proxy.https port 8080
+```
+or 
+revert GNOME proxy, configure only Burp upstream
+**1st — In Burp, set upstream proxy:**
+```bash
+gsettings set org.gnome.system.proxy mode 'none'
+```
+
+**2nd — In Burp, set upstream proxy:**
+
+`Settings → Network → Connections → Upstream Proxy Servers → Add`
+- Destination host: `*`
+- Proxy host: `proxy2`  
+- Proxy port: `8080`
+
+**3rd — Firefox manual proxy:**
+- HTTP: `127.0.0.1:8080`
+- HTTPS: `127.0.0.1:8080`
+
+## The chain then becomes:
+```
+Firefox → Burp:8080 → proxy2:8080 → internet
+```
+then
+
+Import Burp's CA into Firefox
+
+**1st — Download Burp's CA cert:**
+
+With Burp running, go to http://burpsuite or http://127.0.0.1:8080 in Firefox → click CA Certificate to download cacert.der
+
+**2nd — Import into Firefox:**
+
+Settings → Privacy & Security → Certificates → View Certificates → Authorities tab → Import
+
+Select the downloaded cacert.der, then check:
+
+Trust this CA to identify websites
+
+**3rd — Restart Firefox**
+
+That's it — Firefox will then trust Burp's dynamically generated certs and HTTPS sites will load normally while Burp intercepts.
+
+## Step 18: Verify Network
 
 ```bash
 ip a
@@ -269,7 +328,7 @@ ip a
 ```bash
 ping -c 3 10.0.2.2
 ```
-## Step 18: Configure sudo to Keep Proxy Vars (One Time)
+## Step 19: Configure sudo to Keep Proxy Vars (One Time)
 
 ```bash
 sudo visudo
@@ -290,7 +349,7 @@ Defaults env_keep += "http_proxy https_proxy ftp_proxy HTTP_PROXY HTTPS_PROXY FT
 Save: `Ctrl+O` → `Enter` → `Ctrl+X`
 
 ---
-## Step 19: Create the Switch Scripts
+## Step 20: Create the Switch Scripts
 
 ### Corporate Profile Script
 
@@ -511,7 +570,7 @@ sudo chmod +x /usr/local/bin/proxy-status.sh
 
 ---
 
-## Step 20: When You Arrive at the Office
+## Step 21: When You Arrive at the Office
 
 ### On Windows — Enable Proxy:
 
@@ -537,7 +596,7 @@ sudo proxy-status.sh
 
 ---
 
-## Step 21: When You Get Home
+## Step 22: When You Get Home
 
 ### On Windows — Disable Proxy:
 
@@ -563,7 +622,7 @@ sudo proxy-status.sh
 
 ---
 
-## Step 22: Check Current Profile Anytime
+## Step 23: Check Current Profile Anytime
 
 ```bash
 sudo proxy-status.sh
